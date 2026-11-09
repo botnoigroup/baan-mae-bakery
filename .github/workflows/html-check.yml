@@ -1,0 +1,20 @@
+name: ตรวจไฟล์ HTML
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  html-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ดึงโค้ด
+        uses: actions/checkout@v4
+
+      - name: ติดตั้ง Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: ตรวจ index.html ด้วย html-validate
+        run: npx --yes html-validate index.html
